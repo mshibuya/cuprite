@@ -48,7 +48,7 @@ module Capybara::Cuprite
       ensure
         FileUtils.rm_f(original_path)
         FileUtils.rm_f(file)
-        driver&.quit
+        driver && driver.quit
       end
     end
 
@@ -141,7 +141,7 @@ module Capybara::Cuprite
           driver.evaluate_script("[window.innerWidth, window.innerHeight]")
         ).to eq([800, 600])
       ensure
-        driver&.quit
+        driver && driver.quit
       end
     end
 
@@ -623,7 +623,7 @@ module Capybara::Cuprite
           sleep 0.1
           expect(driver.body).to include("hello")
         ensure
-          driver&.quit
+          driver && driver.quit
         end
       end
 
@@ -636,7 +636,7 @@ module Capybara::Cuprite
           sleep 0.1
           expect(driver.body).to include("hello")
         ensure
-          driver&.quit
+          driver && driver.quit
         end
       end
     end
@@ -942,7 +942,7 @@ module Capybara::Cuprite
           driver.visit session_url("/")
           expect(driver.html).to include("Hello world!")
         ensure
-          driver&.quit
+          driver && driver.quit
         end
       end
     end
@@ -960,7 +960,7 @@ module Capybara::Cuprite
 
         expect { TCPServer.new(host, 12345) }.to raise_error(Errno::EADDRINUSE)
       ensure
-        driver&.quit
+        driver && driver.quit
       end
     end
 

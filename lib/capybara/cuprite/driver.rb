@@ -265,7 +265,7 @@ module Capybara::Cuprite
     end
 
     def response_headers
-      browser.network.response&.headers
+      browser.network.response && browser.network.response.headers
     end
 
     def cookies
@@ -312,9 +312,9 @@ module Capybara::Cuprite
       if @options[:inspector]
         Process.spawn(browser.process.path, debug_url)
 
-        if binding&.respond_to?(:pry)
+        if binding && binding.respond_to?(:pry)
           Pry.start(binding)
-        elsif binding&.respond_to?(:irb)
+        elsif binding && binding.respond_to?(:irb)
           binding.irb
         else
           pause
@@ -345,7 +345,7 @@ module Capybara::Cuprite
       unless signal
         begin
           input = read.read_nonblock(80) # clear out the read buffer
-          puts unless input&.end_with?("\n")
+          puts unless input && input.end_with?("\n")
         rescue EOFError, IO::WaitReadable # Ignore problems reading from STDIN.
         end
       end

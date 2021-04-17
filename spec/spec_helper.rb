@@ -35,7 +35,7 @@ end
 
 RSpec.configure do |config|
   config.define_derived_metadata do |metadata|
-    regexes = <<~REGEXP.split("\n").map { |s| Regexp.quote(s.strip) }.join("|")
+    regexes = <<-REGEXP.split("\n").map { |s| Regexp.quote(s.strip) }.join("|")
     node #obscured?
     node #drag_to should work with jsTree
     node #drag_to should drag and drop an object
